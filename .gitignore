@@ -1,0 +1,14 @@
+.vscode
+.DS_Store
+
+app/test.py
+app/venv
+app/.DS_Store
+app/README.md
+
+api/predict.csv
+api/app/__pycache__
+api/test.py
+api/venv
+api/.DS_Store
+api/main.py

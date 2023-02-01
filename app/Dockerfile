@@ -1,5 +1,6 @@
 FROM python:3.9.16-slim-buster
 
+ENV PORT 8081
 WORKDIR /app
 
 COPY ./requirements.txt ./
@@ -7,6 +8,6 @@ COPY ./requirements.txt ./
 RUN pip install -r requirements.txt
 COPY . /app
 
-CMD python app.py -h 0.0.0.0 -p 8081
+EXPOSE $PORT
 
-EXPOSE 8081
+CMD flask --app app:server run --host 0.0.0.0 --port $PORT

@@ -1,11 +1,13 @@
 version: '3'
 services:
-  my_api:
+  backend:
     build: "./api"
     ports:
       - "8080:8080"
-  my_app:
+  frontend:
     build: "./app"
+    environment:
+      - API_BASE_URL=http://backend:8080
     ports:
       - "8081:8081"
   

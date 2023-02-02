@@ -1,21 +1,24 @@
+from os import environ
 import requests
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import dash_bootstrap_components as dbc
+from flask import Flask
 
 from datetime import datetime
-from dash import Dash, html, dcc, dash_table
+from dash import dash, html, dcc, dash_table
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 from dash_bootstrap_templates import load_figure_template
 
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
+server = Flask(__name__)
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True, server=server)
 load_figure_template('LUX')
 
-API_BASE_URL = "http://127.0.0.1:5001" # local
-# API_BASE_URL = "http://my_api:8080" # docker
+API_BASE_URL = environ.get("API_BASE_URL", "http://127.0.0.1:5001")
+# API_BASE_URL = "http://backend:8080" # docker
 
 def description_card():
     """ :return: A Div containing dashboard title & description."""
